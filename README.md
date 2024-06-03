@@ -59,8 +59,8 @@
 | city          | string     | null: false |
 | block         | string     | null: false |
 | building_name | string     |             |
+| phone_number  | string     | null: false |
 | prefecture_id | integer    | null: false |
-| phone_number  | integer    | null: false |
 | order         | references | null: false, foreign_key: true |
 
 
