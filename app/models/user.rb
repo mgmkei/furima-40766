@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  ZENKAKU_REGEXP = /\A[ぁ-んァ-ン一-龥]/
+  VALID_PASSWORD_REGEX = VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,}\z/
+  ZENKAKU_REGEXP = /\A[ぁ-んァ-ン一-龥々ー]/
   KATAKANA_REGEXP = /\A[ァ-ヶー－]+\z/
 
-  validates :password, format: { with: VALID_PASSWORD_REGEX }, length: { minimum: 6 }
+  validates :password,              format: { with: VALID_PASSWORD_REGEX }
+  validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX }
   validates :nickname,        presence: true
   validates :first_name,      presence: true, format: { with: ZENKAKU_REGEXP }
   validates :last_name,       presence: true, format: { with: ZENKAKU_REGEXP }
