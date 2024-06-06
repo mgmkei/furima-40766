@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d]).+\z/.freeze
-  ZENKAKU_REGEXP = /\A[ぁ-んァ-ン一-龥々ー]+\z/
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d].+\z/
+  ZENKAKU_REGEXP = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   KATAKANA_REGEXP = /\A[ァ-ヶー－]+\z/
 
   validates :password,              format: { with: VALID_PASSWORD_REGEX }
